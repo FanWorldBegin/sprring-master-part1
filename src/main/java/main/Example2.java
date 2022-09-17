@@ -8,6 +8,7 @@ public class Example2 {
 
     public static void main(String[] args) {
 
+        // 自己创建的
         Vehicle vehicle = new Vehicle();
         vehicle.setName("Honda City");
         System.out.println("Vehicle name from non-spring context is: " + vehicle.getName());
@@ -17,7 +18,7 @@ public class Example2 {
         based on the surrounding context.
         * */
         var context = new AnnotationConfigApplicationContext(ProjectConfig.class);
-
+        // bean中声明的
         Vehicle veh = context.getBean(Vehicle.class);
         System.out.println("Vehicle name from Spring Context is: " + veh.getName());
 
