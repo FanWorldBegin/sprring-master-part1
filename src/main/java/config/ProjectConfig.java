@@ -1,8 +1,11 @@
 package config;
 
+import beans.Person;
 import beans.Vehicle;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import org.springframework.context.annotation.ComponentScan;
 
 /*
 Spring @Configuration annotation is part of the spring core framework.
@@ -13,32 +16,25 @@ to be used in the application.
 @Configuration
 public class ProjectConfig {
 
-
-    /*
-    @Bean annotation, which lets Spring know that it needs to call
-    this method when it initializes its context and adds the returned
-    value to the context.
-    * */
     @Bean
-    Vehicle vehicle() {
-        var veh = new Vehicle();
-        veh.setName("Audi 8");
-        return veh;
+    public Vehicle vehicle() {
+        Vehicle vehicle = new Vehicle();
+        vehicle.setName("Toyota");
+        return vehicle;
     }
 
     /*
-    The method names usually follow verbs notation.But for methods
-    which we will use to create beans, can use nouns as names.
-    This will be a good practise as the method names will become
-    bean names as well in the context.
+    Here in the below code, we are trying to wire or establish a relationship between Person and
+    Vehicle, by invoking the vehicle() bean method from person() bean method.
+    Spring will make sure to have only 1 vehicle bean is created and also vehicle bean will
+    be created first always as person bean has dependency on it.
     * */
     @Bean
-    String hello() {
-        return "Hello World";
+    public Person person() {
+        Person person = new Person();
+        person.setName("Lucy");
+        person.setVehicle(vehicle());
+        return person;
     }
 
-    @Bean
-    Integer number() {
-        return 16;
-    }
 }

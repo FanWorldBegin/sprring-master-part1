@@ -1,7 +1,13 @@
 package beans;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 public class Vehicle {
 
+    public Vehicle(){
+        System.out.println("Vehicle bean created by Spring");
+    }
     private String name;
 
     public String getName() {
@@ -10,5 +16,15 @@ public class Vehicle {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void printHello(){
+        System.out.println(
+                "Printing Hello from Component Vehicle Bean");
+    }
+
+    @Override
+    public String toString(){
+        return "Vehicle name is - "+name;
     }
 }
