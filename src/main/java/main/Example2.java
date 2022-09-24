@@ -1,21 +1,16 @@
 package main;
 
 import beans.Person;
-import beans.Vehicle;
 import config.ProjectConfig;
-import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.util.Random;
-import java.util.function.Supplier;
+import services.VehicleServices;
 
 public class Example2 {
 
-
     public static void main(String[] args) {
         var context = new AnnotationConfigApplicationContext(ProjectConfig.class);
+        System.out.println("Before retrieving the Person bean from the Spring Context");
         Person person = context.getBean(Person.class);
-        System.out.println("Person name from Spring Context is: " + person.getName());
-        System.out.println("Vehicle that Person own is: " + person.getVehicle());
+        System.out.println("After retrieving the Person bean from the Spring Context");
     }
 }
